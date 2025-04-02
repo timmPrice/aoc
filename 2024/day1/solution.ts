@@ -112,8 +112,29 @@ function totalDistance (one:number[], two:number[]): number {
     return result
 }
 
+function listSimilarity (aNum:number, aList:number[]): number {
+    var count:number = 0;
+    // I could use a better search here... BS could work good because they are already sorted 
+    for (var i = 0; i < aList.length; i++) { 
+        if (aNum === aList[i]){
+            count++;
+        }     
+    }
+
+    return count;
+}
+
+function similarityScore(left:number[], right:number[]): number {
+    let score:number = 0;
+    for (var i = 0; i < left.length; i++){
+        var count:number = listSimilarity(left[i], right);
+        score += left[i] * count; 
+    } 
+    return score;
+}
+
 async function main(): void {
-    const file = Bun.file("../input.txt");
+    const file = Bun.file("./input.txt");
     let input:string = await file.text();
     let buffer:string[] = input.split("\n");
 
@@ -126,15 +147,21 @@ async function main(): void {
         left.push(Number(array[0]));
         right.push(Number(array[1]));
     }
-
+    
     left = quickSort(left, 0, left.length - 1, 3);
     right = quickSort(right, 0, right.length - 1 , 3);
-
-    console.log(left)
-    console.log(right)
-
+    
+    // PART ONE
+    
     let total:number = totalDistance(left, right) 
-    console.log("total distance: ", total);
+    console.log("~ == PART 1 SOLUTION == ~")
+    console.log("total distance: ", total, "\n");
+
+    // PART TWO
+
+    let score:number = similarityScore(left, right);
+    console.log("~ == PART 2 SOLUTION == ~")
+    console.log("similarity score: ", score, "\n");
 }
 
 main();
