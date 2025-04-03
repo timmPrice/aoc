@@ -7,7 +7,7 @@ function checkIncreasing(aList: number[]): boolean {
     for (let i = 0; i < (aList.length - 1); i++) {
         if (aList[i] < aList[i + 1] && Math.abs(aList[i] - aList[i + 1]) <= 3) {
             continue;
-        } else {
+        }else {
             return false;
         }
     }
@@ -27,6 +27,25 @@ function checkDecreasing(aList: number[]): boolean {
     return true;
 }
 
+// check if removing an element would cause it to return true
+function deepCheck(aList: number[]): boolean {
+    var temp: number[];
+    for (var i = 0; i < aList.length; i++) {
+        temp = [...aList];
+        var removed = temp.splice(i, 1);
+        
+        if (temp.length <= 1) {
+            continue;
+        }
+
+        if (checkIncreasing(temp) || checkDecreasing(temp)) {
+            return true;
+        }
+    } 
+
+    return false;
+}
+
 function readRow(aList: string[]): number {
     let count = 0;
     for (let i = 0; i < aList.length; i++) {
@@ -38,12 +57,10 @@ function readRow(aList: string[]): number {
 
         if (checkIncreasing(numbers)) {
             count++;
-            console.log(numbers, ": this increased - length: ", numbers.length)
         } else if (checkDecreasing(numbers)) {
             count++;
-            console.log(numbers, ": this decreased - length: ", numbers.length)
-        } else {
-            console.log(numbers, " - length: ", numbers.length)
+        } else if (deepCheck(numbers)) {
+            count++;
         }
     }
 
@@ -55,7 +72,9 @@ async function main (){
     let input: string = await file.text();
     let buffer: string[] = input.split("\n");
     let total = readRow(buffer);
-    console.log(total)
+    console.log("~ ====================== ~\nFinal Solution to both parts")
+    console.log("total: ", total)
+    console.log("~ ====================== ~")
 }
 
 main();
