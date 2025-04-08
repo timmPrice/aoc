@@ -1,6 +1,7 @@
 // ================================
 //      Advent of Code Day 3
 //      Maybe rust tommorow?
+// My solution feels SO scuffed...
 // ================================
 
 function parseMult(aMult: string): number {
