@@ -1,6 +1,7 @@
 //===========================
 //     Day 4 - AOC 2024 
 // Trying again.. But in rust 
+//   PART 2 IS SO SCUFFED!
 //===========================
 
 use std::fs;
