@@ -88,9 +88,9 @@ fn check_pos_diag(array: &Vec<Vec<char>>, target: [char; 4], row: usize, col: us
 
 fn main() {
     let input: String = fs::read_to_string("./input.txt").expect("unable to read file");
-    let array: Vec<Vec<char>> = to_array(input);
+    let input: Vec<Vec<char>> = to_array(input);
     let target: [char; 4] = ['X', 'M', 'A', 'S'];
     let rtarget: [char; 4] = ['S', 'A', 'M', 'X'];
-    let total = check(&array, target.clone()) + check(&array, rtarget.clone());
+    let total = check(&input, target.clone()) + check(&input, rtarget.clone());
     println!("the total, {}", total);
 }
