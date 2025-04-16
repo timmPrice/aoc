@@ -1,7 +1,8 @@
-// ================
-// AOC DAY 5 - 2024
-//
-// ================
+// ===============================================================
+//                      AOC DAY 5 - 2024
+// heavily based on the fantastic work of saulvaldelvira on github
+//                 Closures are really cool!
+// ===============================================================
 
 use std::cmp::Ordering;
 use std::collections::HashSet;
